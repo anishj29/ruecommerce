@@ -20,6 +20,18 @@ const LoginPage = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    try{ 
+      const response = await axios.post('/login', { email, password });
+      if (response.data.success) {
+       
+      } else {
+        setError(response.data.message);
+        triggerShake();
+      }
+    } catch (error) {
+      console.error(error);
+  }
+     
 
     // Custom validation
     if (!email || !password) {
@@ -31,23 +43,6 @@ const LoginPage = () => {
     // Clear previous errors before attempting login
     setError('');
 
-    const res = await fetch('http://localhost:5000/login', {  // Ensure this URL matches your Flask backend
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email, password })
-    });
-
-    const data = await res.json();
-    if (res.ok) {
-      localStorage.setItem('token', data.token);
-      router.push('/');
-    } else {
-      setError(data.error);
-      triggerShake();
-    }
-  };
 
   return (
     <>
