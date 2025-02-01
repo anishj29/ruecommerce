@@ -1,0 +1,30 @@
+Flask==3.0.0
+Flask-SQLAlchemy==3.0.5
+Flask-Migrate==4.0.5
+Flask-CORS==4.0.0
+Flask-SocketIO==5.3.6
+Flask-JWT-Extended==4.5.3
+
+# Database
+pymongo==3.5.1 # For MongoDB
+
+# Image Upload & Processing
+Pillow==10.2.0
+
+# AI-based Scam Detection
+tensorflow==2.15.0
+transformers==4.38.1
+torch==2.2.0
+opencv-python==4.8.1.78  # For image processing
+
+# Geolocation & Address Handling
+geopy==2.3.0
+requests==2.31.0
+
+# Web Scraping for Price Suggestions
+beautifulsoup4==4.12.3
+selenium==4.17.2
+
+# Security & Validation
+bcrypt==4.1.2
+email-validator==2.1.0.post1
