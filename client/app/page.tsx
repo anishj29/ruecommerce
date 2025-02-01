@@ -1,5 +1,6 @@
 'use client';
 import { Search, ChevronDown, Star } from 'lucide-react';
+import Link from 'next/link';
 
 
 export function Input({ className, ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
@@ -63,7 +64,7 @@ export default function Marketplace() {
             <Button className="bg-transparent text-white">Trade</Button>
             <Button className="bg-transparent text-white">Donate</Button>
             <Button className="bg-transparent text-teal-400 !important text-xs">Switch to Selling</Button>
-            <Button className="bg-transparent text-white">Sign In</Button>
+            <Link href="/login"><Button className="bg-transparent text-white">Sign In</Button></Link>
             <Button className="bg-black text-white">Contact</Button>
           </div>
         </div>
