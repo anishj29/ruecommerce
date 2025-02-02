@@ -12,26 +12,6 @@ import "./sell.css";
 
 // ------------------ Reusable Components ------------------
 
-export function Input({ className, ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <input
-      className={`w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring focus:ring-blue-400 ${className || ""}`}
-      {...props}
-    />
-  );
-}
-
-export function Button({ className, children, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  return (
-    <button
-      className={`px-4 py-2 rounded-lg bg-black-500 hover:bg-background ${className || ""}`}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-}
-
 export function Card({ className, children }: { className?: string; children: React.ReactNode; }) {
   return <div className={`bg-background p-4 rounded-lg shadow ${className || ""}`}>{children}</div>;
 }
@@ -118,15 +98,15 @@ export default function SellerProfile() {
               <Image src="/logo.png" alt="Shop Logo" className="ml-2 logo" width={200} height={100} />
             </div>
             <Link href="/">
-              <Button className="bg-transparent text-white mt-4">Trade</Button>
+              <button className="bg-transparent text-white mt-4">Trade</button>
             </Link>
             <Link href="/">
-              <Button className="bg-transparent text-white mt-4">Donate</Button>
+              <button className="bg-transparent text-white mt-4">Donate</button>
             </Link>
           </div>
           <div className="font-poppins font-semibold justify-center flex space-x-4">
             <Link href="/">
-              <Button className="bg-transparent text-white mt-4">Switch to Buying</Button>
+              <button className="bg-transparent text-white mt-4">Switch to Buying</button>
             </Link>
             <div className="relative">
               <button onClick={() => setNotifOpen(!notifOpen)} className="text-3xl cursor-pointer mt-5">
@@ -183,7 +163,7 @@ export default function SellerProfile() {
             </div>
             <div className="relative mt-2">
               <IoSearch className="absolute left-3 top-2.5 text-xl text-gray-800" />
-              <Input placeholder="       Search Items" className="w-full px-4 py-2 bg-gray-50 text-gray-400 rounded-3xl" />
+              <input placeholder="       Search Items" className="w-full px-4 py-2 bg-gray-50 text-gray-400 rounded-3xl" />
             </div>
           </div>
 
