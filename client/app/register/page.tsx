@@ -41,6 +41,7 @@ const SignUpPage = () => {
       router.push('/login');
     } catch (error) {
       triggerShake();
+      console.log(error);
     }
   };
 

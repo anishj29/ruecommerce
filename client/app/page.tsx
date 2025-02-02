@@ -1,7 +1,7 @@
 'use client';
 import { Search, ChevronDown, Star } from 'lucide-react';
 import Link from 'next/link';
-
+import Image from 'next/image';
 
 export function Input({ className, ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
@@ -42,13 +42,15 @@ export function Dropdown({ label }: { label: string }) {
 export default function Marketplace() {
   return (
     <div className="bg-background min-h-screen flex justify-center items-center p-6">
-      <img
+      <Image
               src="/logo.png" //INSERT LOGO HERE!!
               alt="Shop Logo"
-              className="absolute top-12 left-6 w-23 h-12"
+              className="ml-2 logo"
+              width={200}
+              height={100}
             />
 
-      <div className="bg-foreground text-white rounded-2xl p-6 w-full max-w-6xl shadow-lg relative left-12">
+      <div className="bg-foreground mt-24 text-white rounded-2xl p-6 w-full shadow-lg relative ml-20">
         <div className="flex justify-between items-center mb-4">
           <div className="flex items-center space-x-3">
             
@@ -64,7 +66,7 @@ export default function Marketplace() {
             <Button className="bg-transparent text-white">Trade</Button>
             <Button className="bg-transparent text-white">Donate</Button>
             <Link href="/selling"><Button className="bg-transparent !text-teal-400 text-xs">Switch to Selling</Button></Link>
-            <Link href="/login"><Button className="bg-transparent text-white">Sign In</Button></Link>
+            <Link href="/login"><Button className="bg-transparent text-white sign-in">Sign In</Button></Link>
             <Button className="bg-black text-white">Contact</Button>
           </div>
         </div>

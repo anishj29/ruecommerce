@@ -1,13 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { Search, ChevronDown, Star } from 'lucide-react';
-import Image from 'next/image';
+import { ChevronDown, Star } from 'lucide-react';
 import { FaPen, FaBell, FaCamera } from 'react-icons/fa';
 import { HiUserCircle } from 'react-icons/hi';
 import { IoSearch } from 'react-icons/io5';
 import { IoGridOutline } from 'react-icons/io5';
-import { useRouter } from 'next/navigation';
 // Remove or review the contents of this file if it conflicts with your inline styles
 import "./sell.css"; 
 import Link from 'next/link';
