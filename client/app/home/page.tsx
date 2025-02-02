@@ -321,7 +321,7 @@ export default function Home() {
             </div>
             <div className="relative w-full md:w-1/2 ml-5">
               <Search className="absolute left-3 top-3 text-gray-400" />
-              <Input
+              <input
                 placeholder="Search for services..."
                 className="font-poppins font-semibold bg-stone-50 text-gray-400 pl-10 pr-4 py-2 rounded-lg w-full"
                 value={searchQuery}
