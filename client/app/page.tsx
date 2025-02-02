@@ -3,10 +3,19 @@ import { Search, ChevronDown, Star } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+const serviceImages = [
+  '/service1.jpg',
+  '/service2.jpg',
+  '/service3.jpg',
+  '/service4.jpg',
+  '/service5.jpg',
+  '/service6.jpg',
+];
+
 export function Input({ className, ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
-      className={`w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring focus:ring-blue-400 ${className || ''}`}
+      className={`w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring focus:ring-grey-400 ${className || ''}`}
       {...props}
     />
   );
@@ -84,20 +93,32 @@ export default function Marketplace() {
         </div>
 
         <div className="grid grid-cols-3 gap-4">
-          {[1, 2, 3, 4, 5, 6].map((item) => (
-            <Card key={item} className="bg-foreground text-white p-4 rounded-lg hello2">
-              <CardContent>
-                <div className="h-32 bg-gray-100 "></div>
-                <div className="mt-2">
-                  <p className="font-poppins font-semibold text-xs text-gray-600">@user_name</p>
-                  <h4 className="font-poppins font-semibold text-base ">Service #{item}</h4>
-                  <div className="flex items-center text-yellow-300 text-sm">
-                    <Star size={16} /> <span className="font-poppins font-semibold text-sm ml-1">5.0</span>
-                  </div>
-                  <p className="font-poppins font-semibold text-white-400 text-xs">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                </div>
-              </CardContent>
-            </Card>
+      {serviceImages.map((imgSrc, index) => (
+        <Card key={index} className="bg-gray-300 text-grey-400 p-4 rounded-lg">
+          <CardContent>
+            {/* Replace the placeholder div with your Next.js Image */}
+            <div className="h-32 w-full overflow-hidden rounded-lg">
+              <Image
+                src={imgSrc}
+                alt={`Service #${index + 1}`}
+                width={300}       // or a suitable width
+                height={200}      // or a suitable height
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="mt-2">
+              <p className="font-poppins font-semibold text-xs text-gray-600">@user{index + 34}</p>
+              <h4 className="font-poppins font-semibold text-base text-gray-600">Shoe #{index + 1}</h4>
+              <div className="flex items-center text-yellow-100 text-sm">
+                <Star size={16} />
+                <span className="font-poppins font-semibold text-sm ml-1">5.0</span>
+              </div>
+              <p className="font-poppins font-semibold text-white-400 text-xs text-gray-400">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
           ))}
         </div>
       </div>
