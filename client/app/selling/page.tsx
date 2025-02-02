@@ -1,10 +1,13 @@
 'use client';
 
-import { ChevronDown, Star } from 'lucide-react';
+import { useState } from 'react';
+import { Search, ChevronDown, Star } from 'lucide-react';
+import Image from 'next/image';
 import { FaPen, FaBell, FaCamera } from 'react-icons/fa';
 import { HiUserCircle } from 'react-icons/hi';
 import { IoSearch } from 'react-icons/io5';
 import { IoGridOutline } from 'react-icons/io5';
+import { useRouter } from 'next/navigation';
 // Remove or review the contents of this file if it conflicts with your inline styles
 import "./sell.css"; 
 import Link from 'next/link';
@@ -49,29 +52,34 @@ export function Dropdown({ label }: { label: string }) {
 export default function SellerProfile() {
   
   return (
-    <div className="bg-background min-h-screen flex justify-center items-center p-6">
-      <img
-              src="/logo.png" //INSERT LOGO HERE!!
-              alt="Shop Logo"
-              className="absolute top-12 left-6 w-23 h-12"
-            />
+    <div className="bg-background min-h-screen flex justify-center items-center p-6 hello2">
 
-      <div className="bg-foreground text-white rounded-2xl p-6 w-full max-w-6xl shadow-lg relative left-12">
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex items-center space-x-3">
+      <div className="bg-foreground mt-6 text-white rounded-2xl p-4 w-full shadow-lg relative ml-20 hello3">
+        <div className="flex mb-4 hello">
+        <div className="font-poppins font-semibold flex space-x-4">
+          <div className="flex space-x-3">
             
-         
-  
+          <Image
+                    src="/logo.png" //INSERT LOGO HERE!!
+                    alt="Shop Logo"
+                    className="ml-2 logo"
+                    width={200}
+                    height={100}
+                  />
+
           </div>
-          
-          <div className="font-poppins font-semibold flex space-x-4">
+  
             <Button className="bg-transparent text-white">Home</Button>
             <Button className="bg-transparent text-white">Trade</Button>
             <Button className="bg-transparent text-white">Donate</Button>
-            <Link href="/app"><Button className="bg-transparent !text-teal-400 text-xs">Switch to Buying</Button></Link>
-            <FaBell className="text-xl cursor-pointer" />
-            <HiUserCircle className="text-2xl cursor-pointer" />
+       
+      
           </div>
+          <div className="font-poppins font-semibold justify-center flex space-x-4">
+            <Link href="/app/page"><Button className="bg-transparent text-white ">Switch to Buying</Button></Link> 
+            <FaBell className="text-3xl cursor-pointer" />
+            <HiUserCircle className="text-3xl cursor-pointer" />
+            </div>
         </div>
 
         <div className="flex mt-20 space-x-20">
@@ -79,18 +87,20 @@ export default function SellerProfile() {
 
 
         <div className="p-6 max-w-2xl">
-          <img 
-            src="/pfp.png" 
-            alt="pfp" 
-            className="absolute top-12 left-6 w-45 h-35"
-          />
-          <p className="text-xl font-bold">
-            My Sho 
-            Edit
-            Contact
-          </p>
-        </div>
+        <div className="flex space-x-3">
+            
+            <Image
+                      src="/pfp.png" //INSERT LOGO HERE!!
+                      alt="pfp "
+                      className="rounded-full object-cover mt-[-30px]"
+                      width={200}
+                      height={300}
+                    />
 
+                    
+  
+            </div>
+        </div>
 
             
           <div>
@@ -107,7 +117,7 @@ export default function SellerProfile() {
         </div>
 
 
-        <hr className="h-px my-14 bg-foreground bg-background border-0 dark:foreground"></hr>
+        
           <hr className="h-px my-14 bg-background border-0 dark:background"></hr>
 
 
@@ -127,7 +137,7 @@ export default function SellerProfile() {
             {/* Section: Grid of Items (Stacked Below) */}
             <div className="mt-6 grid grid-cols-2 gap-4">
               {[1, 2].map((item) => (
-                <div key={item} className="bg-foreground p-4 rounded-lg">
+                <div key={item} className="bg-gray-300 p-4 rounded-lg">
                   <div className="h-32 bg-gray-50 rounded"></div>
                   <h4 className="mt-2 text-lg font-semibold font-poppins text-base">Service #{item}</h4>
                   <div className="flex items-center text-yellow-400 text-sm">
