@@ -66,7 +66,7 @@ export default function Home() {
             <Button className="bg-transparent text-white">Home</Button>
             <Button className="bg-transparent text-white">Trade</Button>
             <Button className="bg-transparent text-white">Donate</Button>
-            <Link href="/selling"><Button className="bg-transparent !text-teal-400 text-xs">Switch to Selling</Button></Link>
+            <Link href="/profile"><Button className="bg-transparent !text-teal-400 text-xs">Switch to Selling</Button></Link>
             <Link href="/login"><Button className="bg-transparent text-white sign-in">Sign In</Button></Link>
             <Button className="bg-black text-white">Contact</Button>
           </div>
