@@ -110,7 +110,7 @@ export default function SellerProfile() {
 
   return (
     <div className="fade-in bg-background min-h-screen flex justify-center items-center p-6 hello2">
-      <div className="bg-foreground mt-6 text-white rounded-2xl p-4 w-full shadow-lg relative ml-20 hello3">
+      <div className="bg-foreground mt-6 text-white rounded-2xl p-4 w-full shadow-lg relative hello3">
         {/* Header */}
         <div className="flex mb-4 hello">
           <div className="font-poppins font-semibold flex space-x-4">

@@ -15,7 +15,7 @@ const dummyServices = [
     description: "Comfortable and stylish red shoes for any occasion.",
     image: "/service1.jpg",
     category: "Shoes",
-    campus: "North",
+    campus: "College Avenue",
     price: 100,
   },
   {
@@ -26,7 +26,7 @@ const dummyServices = [
     description: "Trendy blue sneakers that blend style and comfort.",
     image: "/service2.jpg",
     category: "Sneakers",
-    campus: "South",
+    campus: "Cook/Doug",
     price: 120,
   },
   {
@@ -37,7 +37,7 @@ const dummyServices = [
     description: "Durable green boots perfect for outdoor adventures.",
     image: "/service3.jpg",
     category: "Boots",
-    campus: "East",
+    campus: "Busch",
     price: 150,
   },
   {
@@ -48,7 +48,7 @@ const dummyServices = [
     description: "Lightweight yellow sandals, great for the summer.",
     image: "/service4.jpg",
     category: "Sandals",
-    campus: "West",
+    campus: "Busch",
     price: 80,
   },
   {
@@ -59,7 +59,7 @@ const dummyServices = [
     description: "Elegant black heels that add sophistication to any outfit.",
     image: "/service5.jpg",
     category: "Heels",
-    campus: "North",
+    campus: "Livingston",
     price: 200,
   },
   {
@@ -70,7 +70,7 @@ const dummyServices = [
     description: "Comfortable white flats for everyday wear.",
     image: "/service6.jpg",
     category: "Flats",
-    campus: "South",
+    campus: "College Avenue",
     price: 90,
   },
 ];
@@ -195,8 +195,8 @@ export default function Home() {
     "Heels",
     "Flats",
   ];
-  const campusOptions = ["All", "North", "South", "East", "West"];
-  const priceOptions = ["All", "<100", "100-150", ">150"];
+  const campusOptions = ["All", "College Avenue", "Cook/Doug", "Livingston", "Busch"];
+  const priceOptions = ["All", "$ <100", "$100-150", "$ >150"];
   const ratingOptions = ["All", "4+", "4.5+", "5"];
 
   // Combine all filters with the search query
@@ -209,11 +209,11 @@ export default function Home() {
       pass = pass && service.campus === selectedCampus;
     }
     if (selectedPrice !== "All") {
-      if (selectedPrice === "<100") {
+      if (selectedPrice === "$ <100") {
         pass = pass && service.price < 100;
-      } else if (selectedPrice === "100-150") {
+      } else if (selectedPrice === "$100-150") {
         pass = pass && service.price >= 100 && service.price <= 150;
-      } else if (selectedPrice === ">150") {
+      } else if (selectedPrice === "$ >150") {
         pass = pass && service.price > 150;
       }
     }
@@ -238,7 +238,7 @@ export default function Home() {
     <>
       {/* The "fade-in" class is added here to apply the fade in transition */}
       <div className="bg-background min-h-screen flex justify-center items-center p-6 hello2 fade-in">
-        <div className="bg-foreground mt-6 text-white rounded-2xl p-4 shadow-lg relative ml-20 hello3">
+        <div className="bg-foreground mt-6 text-white rounded-2xl p-4 shadow-lg relative hello3">
           {/* Header */}
           <div className="flex mb-4 hello">
             <div className="font-poppins font-semibold flex space-x-4">
@@ -246,7 +246,7 @@ export default function Home() {
                 <Image
                   src="/logo.png" // INSERT LOGO HERE!!
                   alt="Shop Logo"
-                  className="ml-2 logo"
+                  className="logo"
                   width={200}
                   height={100}
                 />
@@ -319,7 +319,7 @@ export default function Home() {
                 }
               />
             </div>
-            <div className="relative w-full md:w-1/2 ml-5s">
+            <div className="relative w-full md:w-1/2 ml-5">
               <Search className="absolute left-3 top-3 text-gray-400" />
               <Input
                 placeholder="Search for services..."
@@ -370,7 +370,7 @@ export default function Home() {
               ))
             ) : (
               <p className="text-white font-poppins col-span-3">
-                No services found.
+                No products found.
               </p>
             )}
           </div>
