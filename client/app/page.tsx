@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { Search, ChevronDown, Star } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -40,11 +41,38 @@ export function CardContent({ children }: { children: React.ReactNode }) {
   return <div>{children}</div>;
 }
 
-export function Dropdown({ label }: { label: string }) {
+
+export function Dropdown({ label, options }: { label: string; options: string[] }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <button className="w-40 flex items-center justify-between bg-gray-50 text-gray-700 px-4 py-2 rounded-lg">
-      {label} <ChevronDown size={16} />
-    </button>
+    <div className="relative inline-block text-left">
+      {/* Dropdown Button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-40 flex items-center justify-between bg-gray-200 text-gray-800 px-4 py-2 rounded-lg focus:outline-none"
+      >
+        {label} <ChevronDown size={16} />
+      </button>
+
+      {/* Dropdown Menu */}
+      {isOpen && (
+        <div className="absolute left-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+          {options.map((option, index) => (
+            <button
+              key={index}
+              className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
+              onClick={() => {
+                console.log(`Selected: ${option}`);
+                setIsOpen(false);
+              }}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -80,11 +108,12 @@ export default function Marketplace() {
         </div>
 
         <div className="font-poppins font-semibold text-lg flex space-x-6 mb-10 hello"> 
-          <div className="font-poppins font-semibold text-lg flex space-x-6 mb-4">
-            <Dropdown label="Category" />
-            <Dropdown label="Campus" />
-            <Dropdown label="Price" />
-            <Dropdown label="Rating" />
+          <div className="font-poppins font-semibold text-lg text-black flex space-x-6 mb-4">
+            <Dropdown label="Category" options={['Clothing', 'Food', 'Other']} />
+            <Dropdown label="Campus" options={['Busch', 'College Avenue', 'Cook/Douglass', 'Livingston']} />
+            <Dropdown label="Price" options={['Free', '$', '$$']} />
+            <Dropdown label="Rating" options={['Option 1', 'Option 2', 'Option 3']} />
+
           </div>
           <div className="relative w-1/2">
             <Search className="absolute left-3 top-3 text-gray-400" />
