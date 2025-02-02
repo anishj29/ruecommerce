@@ -75,23 +75,6 @@ const dummyServices = [
   },
 ];
 
-export function Button({
-  className,
-  children,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  return (
-    <button
-      className={`px-4 py-2 rounded-lg bg-black-500 hover:bg-background ${
-        className || ""
-      }`}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-}
-
 export function Card({
   className,
   children,
@@ -238,25 +221,25 @@ export default function Home() {
                 />
               </div>
               <Link href="/">
-                <Button className="bg-transparent text-white mt-4">Home</Button>
+                <button className="bg-transparent text-white mt-4">Home</button>
               </Link>
               <Link href="/">
-                <Button className="bg-transparent text-white mt-4">Trade</Button>
+                <button className="bg-transparent text-white mt-4">Trade</button>
               </Link>
               <Link href="/">
-                <Button className="bg-transparent text-white mt-4">Donate</Button>
+                <button className="bg-transparent text-white mt-4">Donate</button>
               </Link>
             </div>
             <div className="font-poppins font-semibold justify-center flex space-x-4">
               <Link href="/profile">
-                <Button className="bg-transparent text-white mt-4">
+                <button className="bg-transparent text-white mt-4">
                   Switch to Selling
-                </Button>
+                </button>
               </Link>
               <Link href="/login">
-                <Button className="bg-transparent text-white sign-in mt-4">
+                <button className="bg-transparent text-white sign-in mt-4">
                   Sign In
-                </Button>
+                </button>
               </Link>
             </div>
           </div>
