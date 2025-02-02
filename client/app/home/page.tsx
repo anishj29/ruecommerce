@@ -75,7 +75,7 @@ const dummyServices = [
   },
 ];
 
-export function Card({
+function Card({
   className,
   children,
 }: {
@@ -89,7 +89,7 @@ export function Card({
   );
 }
 
-export function CardContent({ children }: { children: React.ReactNode }) {
+function CardContent({ children }: { children: React.ReactNode }) {
   return <div>{children}</div>;
 }
 
