@@ -50,7 +50,8 @@ export function Dropdown({ label }: { label: string }) {
 }
 
 export default function SellerProfile() {
-  
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="bg-background min-h-screen flex justify-center items-center p-6 hello2">
 
@@ -80,7 +81,29 @@ export default function SellerProfile() {
           </div>
           <div className="font-poppins font-semibold justify-center flex space-x-4">
             <Link href="/"><Button className="bg-transparent text-white ">Switch to Buying</Button></Link> 
-            <FaBell className="text-3xl cursor-pointer" />
+
+            {/* 🔔 Notifications Bell Button */}
+            <div className="relative">
+              <button onClick={() => setIsOpen(!isOpen)} className="text-3xl cursor-pointer">
+                <FaBell />
+                {/* Optional: Notification Badge */}
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+                  3
+                </span>
+              </button>
+
+              {/* Dropdown Menu */}
+              {isOpen && (
+                <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-300 shadow-lg rounded-lg z-50">
+                  <ul className="p-2 text-gray-800">
+                    <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">New order received!</li>
+                    <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Item liked by a user</li>
+                    <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Message from a buyer</li>
+                  </ul>
+                </div>
+              )}
+            </div>
+
             <HiUserCircle className="text-3xl cursor-pointer" />
             </div>
         </div>
