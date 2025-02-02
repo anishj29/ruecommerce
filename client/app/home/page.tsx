@@ -75,20 +75,6 @@ const dummyServices = [
   },
 ];
 
-export function Input({
-  className,
-  ...props
-}: React.InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <input
-      className={`w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring focus:ring-grey-400 ${
-        className || ""
-      }`}
-      {...props}
-    />
-  );
-}
-
 export function Button({
   className,
   children,
