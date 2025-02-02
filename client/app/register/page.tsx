@@ -1,9 +1,12 @@
 "use client";
+
+
 import axios from 'axios';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import "./signup.css"; 
+import "./signup.css";
 import Link from 'next/link';
+
 
 const Register = () => {
   const router = useRouter();
@@ -11,82 +14,103 @@ const Register = () => {
     email: '',
     name: '',
     password: '',
-    location: { type: 'Point', coordinates: [0, 0] }, // Default location
   });
   const [error, setError] = useState('');
   const [shake, setShake] = useState(false);
+
 
   const triggerShake = () => {
     setShake(true);
     setTimeout(() => setShake(false), 500);
   };
 
-    // Custom validation
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+
+    // Custom validation: run only on form submission.
     if (!formData.email || !formData.name || !formData.password) {
       setError('Please fill in all fields');
       triggerShake();
       return;
     }
 
-    // Clear previous errors before attempting login
+
+    // Clear previous errors before attempting to register.
     setError('');
-    const handleSubmit = async () => {
-      const data = await axios.post('https://localhost:3000/register', formData);
-      if(data.status === 201) {
-        router.push('/login');
+
+
+    try {
+      const response = await axios.post('https://localhost:5000/register', formData);
+      if (response.status === 201) {
         console.log('User Created Successfully');
-      }else { 
+        router.push('/login');
+      } else {
         setError('User Already Exists');
         triggerShake();
       }
-    };
+    } catch (err) {
+      console.error(err);
+      setError('User Already Exists');
+      triggerShake();
+    }
+  };
+
 
   return (
-    <>
-      <div className={`login-container ${shake ? 'shake' : ''}`}>
-        <h1 className="title">RU ready to shop?</h1>
-        <form noValidate onSubmit={handleSubmit}>
-          <div>
-            <input 
-              type="text" 
-              placeholder='Email'
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              // Remove the required attribute to let our validation run
-              // required 
-              className="user"
-            />
-          </div>
-          <div>
-            <input 
-              type="text" 
-              placeholder='Full Name'
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              // Remove the required attribute to let our validation run
-              // required 
-              className="name"
-            />
-          </div>
-          <div>
-            <input 
-              type="password" 
-              placeholder='Password'
-              value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              // Remove the required attribute
-              // required 
-              className="pass"
-            />
-          </div>
-          {error && <p className="error-text" >{error}</p>}
-          <button className="bg-emerald-900 lg-button" type="submit">Create account</button>
-        </form>
-
-        <h1 className="create-account">Already have an account? <Link className="create-link" href="/login">Sign In</Link> </h1>
-      </div>
-    </>
+    <div className={`login-container ${shake ? 'shake' : ''}`}>
+      <h1 className="title">RU ready to shop?</h1>
+      <form noValidate onSubmit={handleSubmit}>
+        <div>
+          <input
+            type="text"
+            placeholder="Email"
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+            className="user"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={formData.name}
+            onChange={(e) =>
+              setFormData({ ...formData, name: e.target.value })
+            }
+            className="name"
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={(e) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
+            className="pass"
+          />
+        </div>
+        {error && <p className="error-text">{error}</p>}
+        <button className="bg-emerald-900 lg-button" type="submit">
+          Create account
+        </button>
+      </form>
+      <h1 className="create-account">
+        Already have an account?{" "}
+        <Link className="create-link" href="/login">
+          Sign In
+        </Link>
+      </h1>
+    </div>
   );
 };
 
+
 export default Register;
+
+
