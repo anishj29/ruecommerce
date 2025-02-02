@@ -137,10 +137,10 @@ export default function SellerProfile() {
                 <div key={item} className="bg-gray-300 p-4 rounded-lg">
                   <div className="h-32 bg-gray-50 rounded"></div>
                   <h4 className="mt-2 text-gray-800 text-lg font-semibold font-poppins text-base">Service #{item}</h4>
-                  <div className="flex items-center text-yellow-400 text-sm">
+                  <div className="flex items-center text-yellow-100 text-sm">
                     <Star size={16} /> <span className="font-poppins font-semibold text-sm ml-1">5.0</span>
                   </div>
-                  <p className="font-poppins font-semibold text-white-400 text-xs">
+                  <p className="font-poppins font-semibold text-gray-400 text-xs">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                   </p>
                 </div>
