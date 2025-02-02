@@ -1,13 +1,13 @@
 "use client";
 
+import axios from 'axios';
 import { useState } from 'react';
-// import { useRouter } from 'next/navigation';
-// Remove or review the contents of this file if it conflicts with your inline styles
 import "./login.css"; 
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const LoginPage = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -18,21 +18,6 @@ const LoginPage = () => {
     setTimeout(() => setShake(false), 500);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // try{ 
-    //   const response = await axios.post('/login', { email, password });
-    //   if (response.data.success) {
-       
-    //   } else {
-    //     setError(response.data.message);
-    //     triggerShake();
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-  }
-     
-
     // Custom validation
     if (!email || !password) {
       setError('Please fill in all fields');
@@ -42,7 +27,17 @@ const LoginPage = () => {
 
     // Clear previous errors before attempting login
     setError('');
-
+  
+  const handleSubmit = async (e) => {
+    const data = await axios.post('https://localhost:3000/login', { email, password });
+    if(data.status === 200) {
+      router.push('/profile');
+      console.log('Login successful');
+    }else { 
+      setError('Invalid credentials');
+      triggerShake();
+    }
+  };
 
   return (
     <>
