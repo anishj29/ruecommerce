@@ -68,15 +68,18 @@ export default function SellerProfile() {
                   />
 
           </div>
-  
-            <Button className="bg-transparent text-white">Home</Button>
+            
+            <Link href="/" className="inline-flex">
+              <Button className="bg-transparent text-white">Home</Button>
+            </Link>
+
             <Button className="bg-transparent text-white">Trade</Button>
             <Button className="bg-transparent text-white">Donate</Button>
        
       
           </div>
           <div className="font-poppins font-semibold justify-center flex space-x-4">
-            <Link href="/app/page"><Button className="bg-transparent text-white ">Switch to Buying</Button></Link> 
+            <Link href="/"><Button className="bg-transparent text-white ">Switch to Buying</Button></Link> 
             <FaBell className="text-3xl cursor-pointer" />
             <HiUserCircle className="text-3xl cursor-pointer" />
             </div>
