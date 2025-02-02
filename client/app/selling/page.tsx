@@ -104,21 +104,15 @@ export default function SellerProfile() {
 
             
           <div>
-            <h2 className="text-xl font-bold">My Shop</h2>
+            <h2 className="text-3xl font-bold">My Shop</h2>
             <div className="flex items-center left-20 space-x-2 text-gray-50">
-              <span className="underline ">Edit</span>
+              <span className="underline cursor-pointer">Edit</span>
               <FaPen className="text-sm" />
-            </div>
-            <div className="flex items-center space-x-2 text-gray-50">
-              <span className="underline ">Contact</span>
-              <span className="text-xs"></span>
             </div>
           </div>
         </div>
 
 
-        
-          <hr className="h-px my-14 bg-background border-0 dark:background"></hr>
 
 
           <div className="mt-6">
@@ -126,11 +120,11 @@ export default function SellerProfile() {
             <div>
               <div className="flex items-center space-x-2">
                 <IoGridOutline className="text-xl text-gray-50" />
-                <h3 className="text-lg font-poppins font-semibold">All Items</h3>
+                <h3 className="text-2xl font-poppins font-semibold">All Items</h3>
               </div>
               <div className="relative mt-2">
                 <IoSearch className="absolute left-3 top-2.5 text-xl text-gray-800 " />
-                <input type="text" placeholder="       Search Items" className="w-full px-4 py-2 bg-gray-50 text-gray-400 rounded-3xl " />
+                <input type="text " placeholder="       Search Items" className="w-full px-4 py-2 bg-gray-50 text-gray-400 font-poppins  rounded-3xl " />
               </div>
             </div>
 
@@ -139,7 +133,7 @@ export default function SellerProfile() {
               {[1, 2].map((item) => (
                 <div key={item} className="bg-gray-300 p-4 rounded-lg">
                   <div className="h-32 bg-gray-50 rounded"></div>
-                  <h4 className="mt-2 text-lg font-semibold font-poppins text-base">Service #{item}</h4>
+                  <h4 className="mt-2 text-gray-800 text-lg font-semibold font-poppins text-base">Service #{item}</h4>
                   <div className="flex items-center text-yellow-400 text-sm">
                     <Star size={16} /> <span className="font-poppins font-semibold text-sm ml-1">5.0</span>
                   </div>
