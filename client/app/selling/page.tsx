@@ -78,15 +78,27 @@ export default function SellerProfile() {
         </div>
 
         <div className="flex mt-20 space-x-20">
-          <div className="relative w-20 h-20 bg-gray-500 rounded-full flex items-center justify-center">
-            <HiUserCircle className="text-8xl text-gray-300" />
-            <div className="absolute bottom-0 right-0 bg-gray-800 p-1 rounded-full">
-              <FaCamera className="text-sm text-white" />
-            </div>
-          </div>
+       
+
+
+        <div className="p-6 max-w-2xl">
+          <img 
+            src="/pfp.png" 
+            alt="pfp" 
+            className="absolute top-12 left-6 w-45 h-35"
+          />
+          <p className="text-xl font-bold">
+            My Sho 
+            Edit
+            Contact
+          </p>
+        </div>
+
+
+            
           <div>
             <h2 className="text-xl font-bold">My Shop</h2>
-            <div className="flex items-center space-x-2 text-gray-50">
+            <div className="flex items-center left-20 space-x-2 text-gray-50">
               <span className="underline ">Edit</span>
               <FaPen className="text-sm" />
             </div>
@@ -97,37 +109,40 @@ export default function SellerProfile() {
           </div>
         </div>
 
-        <hr className="h-px my-14 bg-background border-0 dark:background"></hr>
+
+        <hr className="h-px my-14 bg-foreground bg-background border-0 dark:foreground"></hr>
+          <hr className="h-px my-14 bg-background border-0 dark:background"></hr>
 
 
-          <div className="mt-6 flex gap-50">
-          {/* Left Section: Search & Sales */}
-          <div className="flex-1.5">
-            <IoGridOutline className="text-xl text-gray-50" />
-            <h3 className="text-lg font-semibold">All Items</h3>
-            <div className="relative mt-2">
-              <IoSearch className="absolute left-3 top-2.5 text-xl text-gray-800" />
-              <input type="text" placeholder="       Search Items" className="w-250 px-4 py-2 bg-gray-50 text-gray-400 rounded-3xl" />
-            </div>
-            <p className="mt-2 text-gray-50 underline">0 sales</p>
-          </div>
-
-          {/* Right Section: Grid of Items */}
-          <div className="flex-1 grid grid-cols-2 gap-4">
-            {[1, 2].map((item) => (
-              <div key={item} className="bg-foreground p-4 rounded-lg">
-                <div className="h-32 bg-gray-50 rounded"></div>
-                <h4 className="mt-2 text-lg font-semibold font-poppins text-base">Service #{item}</h4>
-                <div className="flex items-center text-yellow-400 text-sm">
-                  <Star size={16} /> <span className="font-poppins font-semibold text-sm ml-1">5.0</span>
-                </div>
-                <p className="font-poppins font-semibold text-white-400 text-xs">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                </p>
+          <div className="mt-6">
+            {/* Section: Search & Sales */}
+            <div>
+              <div className="flex items-center space-x-2">
+                <IoGridOutline className="text-xl text-gray-50" />
+                <h3 className="text-lg font-poppins font-semibold">All Items</h3>
               </div>
-            ))}
+              <div className="relative mt-2">
+                <IoSearch className="absolute left-3 top-2.5 text-xl text-gray-800 " />
+                <input type="text" placeholder="       Search Items" className="w-full px-4 py-2 bg-gray-50 text-gray-400 rounded-3xl " />
+              </div>
+            </div>
+
+            {/* Section: Grid of Items (Stacked Below) */}
+            <div className="mt-6 grid grid-cols-2 gap-4">
+              {[1, 2].map((item) => (
+                <div key={item} className="bg-foreground p-4 rounded-lg">
+                  <div className="h-32 bg-gray-50 rounded"></div>
+                  <h4 className="mt-2 text-lg font-semibold font-poppins text-base">Service #{item}</h4>
+                  <div className="flex items-center text-yellow-400 text-sm">
+                    <Star size={16} /> <span className="font-poppins font-semibold text-sm ml-1">5.0</span>
+                  </div>
+                  <p className="font-poppins font-semibold text-white-400 text-xs">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
 
 
