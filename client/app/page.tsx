@@ -74,7 +74,7 @@ export default function Marketplace() {
             <Button className="bg-transparent text-white">Donate</Button>
           </div>
           <div className="font-poppins font-semibold justify-center flex space-x-4">
-            <Link href="/selling"><Button className="bg-transparent !text-teal-400 text-xs">Switch to Selling</Button></Link>
+            <Link href="/selling"><Button className="bg-transparent text-white">Switch to Selling</Button></Link>
             <Link href="/login"><Button className="bg-transparent text-white sign-in">Sign In</Button></Link>
             </div>
         </div>
