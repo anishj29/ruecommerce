@@ -142,7 +142,7 @@ export default function Marketplace() {
                 <Star size={16} />
                 <span className="font-poppins font-semibold text-sm ml-1">5.0</span>
               </div>
-              <p className="font-poppins font-semibold text-white-400 text-xs text-gray-400">
+              <p className="font-poppins font-semibold text-xs text-gray-400">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
               </p>
             </div>
