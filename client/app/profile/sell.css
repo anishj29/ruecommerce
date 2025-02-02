@@ -1,0 +1,96 @@
+/* sell.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #616161;
+}
+
+.hello2 {
+  background-color: rgb(178, 178, 178);
+}
+.hello3 {
+  background-color: rgb(109, 109, 109);
+}
+
+.sign-in {
+  width: 90px;
+}
+
+.logo {
+  position: relative;
+  height: 10vh;
+  width: 10vw;
+}
+
+.hello {
+  justify-content: space-between;
+  padding-right: 10;
+  flex-direction: row;
+}
+
+.ml-20 {
+  margin-left: 0;
+  margin: 0;
+}
+
+body {
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Upload container: circular & clipped */
+.upload-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.upload-icon {
+  width: 150px;
+  height: 150px;
+}
+/* Make the image fill the container and remain centered */
+.upload-container img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Overlay that appears on hover */
+.upload-overlay {
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  width: 150px;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.upload-container:hover .upload-overlay {
+  opacity: 1;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeInAnimation 1s ease-out forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
