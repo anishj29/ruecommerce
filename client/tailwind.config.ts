@@ -9,8 +9,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "#97ACA5",
-        foreground: "#446461",
+        // background: "#97ACA5",
+        // foreground: "#446461",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "sans-serif"],

@@ -1,21 +1,21 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
-import { ChevronDown, Star } from 'lucide-react';
-import { FaPen, FaBell, FaCamera } from 'react-icons/fa';
-import { HiUserCircle } from 'react-icons/hi';
-import { IoSearch } from 'react-icons/io5';
-import { IoGridOutline } from 'react-icons/io5';
-import { IoPersonCircleOutline } from 'react-icons/io5';
-import "./sell.css"; 
-import Link from 'next/link';
-import { useState } from 'react';
-import Image from 'next/image';
+import React, { useState, useEffect } from "react";
+import { ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { FaPen, FaBell, FaCamera } from "react-icons/fa";
+import { HiUserCircle } from "react-icons/hi";
+import { IoSearch, IoGridOutline, IoPersonCircleOutline } from "react-icons/io5";
+import Link from "next/link";
+import { IoStar } from "react-icons/io5";
+import "./sell.css";
+
+// ------------------ Reusable Components ------------------
 
 export function Input({ className, ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
-      className={`w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring focus:ring-blue-400 ${className || ''}`}
+      className={`w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring focus:ring-blue-400 ${className || ""}`}
       {...props}
     />
   );
@@ -24,7 +24,7 @@ export function Input({ className, ...props }: React.InputHTMLAttributes<HTMLInp
 export function Button({ className, children, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
-      className={`px-4 py-2 rounded-lg bg-black-500 hover:bg-background ${className || ''}`}
+      className={`px-4 py-2 rounded-lg bg-black-500 hover:bg-background ${className || ""}`}
       {...props}
     >
       {children}
@@ -32,15 +32,15 @@ export function Button({ className, children, ...props }: React.ButtonHTMLAttrib
   );
 }
 
-export function Card({ className, children }: { className?: string; children: React.ReactNode }) {
-  return <div className={`bg-background p-4 rounded-lg shadow ${className || ''}`}>{children}</div>;
+export function Card({ className, children }: { className?: string; children: React.ReactNode; }) {
+  return <div className={`bg-background p-4 rounded-lg shadow ${className || ""}`}>{children}</div>;
 }
 
-export function CardContent({ children }: { children: React.ReactNode }) {
+export function CardContent({ children }: { children: React.ReactNode; }) {
   return <div>{children}</div>;
 }
 
-export function Dropdown({ label }: { label: string }) {
+export function Dropdown({ label }: { label: string; }) {
   return (
     <button className="w-40 flex items-center justify-between bg-gray-50 text-gray-700 px-4 py-2 rounded-lg">
       {label} <ChevronDown size={16} />
@@ -49,89 +49,133 @@ export function Dropdown({ label }: { label: string }) {
 }
 
 export default function SellerProfile() {
-  // Initially, no image has been uploaded so we set profileImage to null.
-  // This causes the default icon to display.
-  const [profileImage, setProfileImage] = useState<string | null>(null);
+  // ----- Notifications Dropdown State -----
+  const [notifOpen, setNotifOpen] = useState(false);
 
-  // Handle file selection and update the state with the new image URL.
+  // ----- Profile Image Upload State (with localStorage & fade-in) -----
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [isProfileImageLoaded, setIsProfileImageLoaded] = useState(true);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("profileImage");
+    if (saved) {
+      setProfileImage(saved);
+      setIsProfileImageLoaded(false);
+    }
+    setIsInitialized(true);
+  }, []);
+
+  useEffect(() => {
+    if (profileImage && typeof window !== "undefined") {
+      const img = new window.Image();
+      img.src = profileImage;
+      img.onload = () => setIsProfileImageLoaded(true);
+      img.onerror = () => setIsProfileImageLoaded(true);
+    }
+  }, [profileImage]);
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setProfileImage(imageUrl);
-      console.log('File selected:', file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64data = reader.result as string;
+        setProfileImage(base64data);
+        setIsProfileImageLoaded(false);
+        localStorage.setItem("profileImage", base64data);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
-  return (
-    <div className="bg-background min-h-screen flex justify-center items-center p-6">
-      <Image
-        src="/logo.png"
-        alt="Shop Logo"
-        className="absolute top-12 left-6 w-23 h-12 logo"
-        width={100}
-        height={100}
-      />
+  if (!isInitialized) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-background">
+        <p className="text-white font-poppins text-xl">Loading profile...</p>
+      </div>
+    );
+  }
+  if (profileImage && !isProfileImageLoaded) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-background">
+        <p className="text-white font-poppins text-xl">Loading profile...</p>
+      </div>
+    );
+  }
 
-      <div className="bg-foreground text-white rounded-2xl p-6 w-full max-w-6xl shadow-lg relative left-12">
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex items-center space-x-3"></div>
+  // ----- (Optional) Dummy Grid Items -----
+  // This section remains as-is from your original code.
+  const gridItems = [1, 2]; // replace with dynamic content if needed
+
+  return (
+    <div className="fade-in bg-background min-h-screen flex justify-center items-center p-6 hello2">
+      <div className="bg-foreground mt-6 text-white rounded-2xl p-4 w-full shadow-lg relative ml-20 hello3">
+        {/* Header */}
+        <div className="flex mb-4 hello">
           <div className="font-poppins font-semibold flex space-x-4">
-            <Link href="/"><Button className="bg-transparent text-white">Home</Button></Link>
-            <Button className="bg-transparent text-white">Trade</Button>
-            <Button className="bg-transparent text-white">Donate</Button>
-            <Link href="/app">
-              <Button className="bg-transparent !text-teal-400 text-xs">Switch to Buying</Button>
+            <div className="flex space-x-3">
+              <Image src="/logo.png" alt="Shop Logo" className="ml-2 logo" width={200} height={100} />
+            </div>
+            <Link href="/">
+              <Button className="bg-transparent text-white mt-4">Trade</Button>
             </Link>
-            <FaBell className="text-xl cursor-pointer" />
-            <HiUserCircle className="text-2xl cursor-pointer" />
+            <Link href="/">
+              <Button className="bg-transparent text-white mt-4">Donate</Button>
+            </Link>
+          </div>
+          <div className="font-poppins font-semibold justify-center flex space-x-4">
+            <Link href="/">
+              <Button className="bg-transparent text-white mt-4">Switch to Buying</Button>
+            </Link>
+            <div className="relative">
+              <button onClick={() => setNotifOpen(!notifOpen)} className="text-3xl cursor-pointer mt-5">
+                <FaBell />
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">3</span>
+              </button>
+              {notifOpen && (
+                <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-300 shadow-lg rounded-lg z-50">
+                  <ul className="p-2 text-gray-800">
+                    <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">New order received!</li>
+                    <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Item liked by a user</li>
+                    <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Message from a buyer</li>
+                  </ul>
+                </div>
+              )}
+            </div>
+            <HiUserCircle className="text-3xl cursor-pointer mt-5" />
           </div>
         </div>
 
+        {/* Profile & Shop Info Section */}
         <div className="flex mt-20 space-x-20">
-          {/* Profile Picture Section with File Upload */}
           <div className="p-6 max-w-2xl">
+            {/* Profile Upload Section */}
             <label htmlFor="profile-upload" className="upload-container cursor-pointer">
               {profileImage ? (
-                <img
-                  src={profileImage}
-                  alt="Profile Picture"
-                  className="object-cover"  // Render the new image if available
-                />
+                <img src={profileImage} alt="Profile Picture" className="rounded-full object-cover" />
               ) : (
-                <IoPersonCircleOutline className="object-cover" />  // Render the default icon initially
+                <IoPersonCircleOutline className="w-full h-full upload-icon" />
               )}
               <div className="upload-overlay">
                 <FaCamera className="text-white text-2xl" />
               </div>
             </label>
-            <input
-              id="profile-upload"
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleFileChange}
-            />
+            <input id="profile-upload" type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
           </div>
-
           <div>
-            <h2 className="text-xl font-bold">My Shop</h2>
+            <h2 className="text-3xl font-bold mt-14">My Shop</h2>
             <div className="flex items-center left-20 space-x-2 text-gray-50">
-              <span className="underline">Edit</span>
+              <span className="underline cursor-pointer">Edit</span>
               <FaPen className="text-sm" />
-            </div>
-            <div className="flex items-center space-x-2 text-gray-50">
-              <span className="underline">Contact</span>
-              <span className="text-xs"></span>
             </div>
           </div>
         </div>
 
-        <hr className="h-px my-14 bg-foreground bg-background border-0" />
-        <hr className="h-px my-14 bg-background border-0" />
+        <hr className="h-px my-14 bg-background border-0 dark:background" />
 
+        {/* Search & Sales Section */}
         <div className="mt-6">
-          {/* Section: Search & Sales */}
           <div>
             <div className="flex items-center space-x-2">
               <IoGridOutline className="text-xl text-gray-50" />
@@ -139,30 +183,28 @@ export default function SellerProfile() {
             </div>
             <div className="relative mt-2">
               <IoSearch className="absolute left-3 top-2.5 text-xl text-gray-800" />
-              <input
-                type="text"
-                placeholder="       Search Items"
-                className="w-full px-4 py-2 bg-gray-50 text-gray-400 rounded-3xl"
-              />
+              <Input placeholder="       Search Items" className="w-full px-4 py-2 bg-gray-50 text-gray-400 rounded-3xl" />
             </div>
           </div>
 
-          {/* Section: Grid of Items */}
+          {/* Services Grid */}
           <div className="mt-6 grid grid-cols-2 gap-4">
-            {[1, 2].map((item) => (
-              <div key={item} className="bg-foreground p-4 rounded-lg">
-                <div className="h-32 bg-gray-50 rounded"></div>
-                <h4 className="mt-2 text-lg font-semibold font-poppins text-base">
-                  Service #{item}
-                </h4>
-                <div className="flex items-center text-yellow-400 text-sm">
-                  <Star size={16} /> 
-                  <span className="font-poppins font-semibold text-sm ml-1">5.0</span>
-                </div>
-                <p className="font-poppins font-semibold text-white-400 text-xs">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                </p>
-              </div>
+            {gridItems.map((item) => (
+              <Card key={item} className="bg-gray-300 p-4 rounded-lg">
+                <CardContent>
+                  <div className="h-32 bg-gray-50 rounded"></div>
+                  <h4 className="mt-2 text-lg font-semibold text-gray-600 font-poppins text-base">
+                    Service #{item}
+                  </h4>
+                  <div className="flex items-center text-yellow-500 text-sm">
+                    <IoStar size={16} />
+                    <span className="font-poppins font-semibold text-sm ml-1 text-black">5.0</span>
+                  </div>
+                  <p className="font-poppins font-semibold text-gray-600 text-xs">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                  </p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
