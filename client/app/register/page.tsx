@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import "./signup.css"; 
 import Link from 'next/link';
 
-const SignUpPage = () => {
+const Register = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     email: '',
@@ -21,9 +21,6 @@ const SignUpPage = () => {
     setTimeout(() => setShake(false), 500);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
     // Custom validation
     if (!formData.email || !formData.name || !formData.password) {
       setError('Please fill in all fields');
@@ -33,17 +30,16 @@ const SignUpPage = () => {
 
     // Clear previous errors before attempting login
     setError('');
-
-    try {
-      const response = await axios.post('http://localhost:5000/register', formData);
-      console.log(response.data.message);
-      // Redirect to login page after successful registration
-      router.push('/login');
-    } catch (error) {
-      triggerShake();
-      console.log(error);
-    }
-  };
+    const handleSubmit = async () => {
+      const data = await axios.post('https://localhost:3000/register', formData);
+      if(data.status === 201) {
+        router.push('/login');
+        console.log('User Created Successfully');
+      }else { 
+        setError('User Already Exists');
+        triggerShake();
+      }
+    };
 
   return (
     <>
@@ -93,4 +89,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default Register;
