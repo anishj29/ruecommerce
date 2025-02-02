@@ -1,5 +1,5 @@
 "use client";
-
+import axios from 'axios';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import "./signup.css"; 
@@ -7,9 +7,12 @@ import Link from 'next/link';
 
 const SignUpPage = () => {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({
+    email: '',
+    name: '',
+    password: '',
+    location: { type: 'Point', coordinates: [0, 0] }, // Default location
+  });
   const [error, setError] = useState('');
   const [shake, setShake] = useState(false);
 
@@ -22,7 +25,7 @@ const SignUpPage = () => {
     e.preventDefault();
 
     // Custom validation
-    if (!email || !name || !password) {
+    if (!formData.email || !formData.name || !formData.password) {
       setError('Please fill in all fields');
       triggerShake();
       return;
@@ -31,20 +34,12 @@ const SignUpPage = () => {
     // Clear previous errors before attempting login
     setError('');
 
-    const res = await fetch('http://localhost:5000/login', {  // Ensure this URL matches your Flask backend
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email, name, password })
-    });
-
-    const data = await res.json();
-    if (res.ok) {
-      localStorage.setItem('token', data.token);
-      router.push('/');
-    } else {
-      setError(data.error);
+    try {
+      const response = await axios.post('http://localhost:5000/register', formData);
+      console.log(response.data.message);
+      // Redirect to login page after successful registration
+      router.push('/login');
+    } catch (error) {
       triggerShake();
     }
   };
@@ -58,8 +53,8 @@ const SignUpPage = () => {
             <input 
               type="text" 
               placeholder='Email'
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               // Remove the required attribute to let our validation run
               // required 
               className="user"
@@ -69,8 +64,8 @@ const SignUpPage = () => {
             <input 
               type="text" 
               placeholder='Full Name'
-              value={name} 
-              onChange={(e) => setName(e.target.value)} 
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               // Remove the required attribute to let our validation run
               // required 
               className="name"
@@ -80,8 +75,8 @@ const SignUpPage = () => {
             <input 
               type="password" 
               placeholder='Password'
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               // Remove the required attribute
               // required 
               className="pass"
