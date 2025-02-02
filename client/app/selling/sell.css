@@ -73,3 +73,33 @@
   80% { transform: translateX(4px); }
   100% { transform: translateX(0); }
 }
+
+.upload-container {
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+/* Overlay: cover the entire container, be circular, and show on hover */
+.upload-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.object-cover {
+  width: 120px;
+  height: 120px;
+}
+.upload-container:hover .upload-overlay {
+  opacity: 1;
+}

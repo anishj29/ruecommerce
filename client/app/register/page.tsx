@@ -35,7 +35,7 @@ const SignUpPage = () => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:5000/register', formData);
+      const response = await axios.post('', formData);
       console.log(response.data.message);
       // Redirect to login page after successful registration
       router.push('/login');

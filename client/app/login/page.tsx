@@ -1,13 +1,11 @@
 "use client";
 
 import { useState } from 'react';
-// import { useRouter } from 'next/navigation';
 // Remove or review the contents of this file if it conflicts with your inline styles
 import "./login.css"; 
 import Link from 'next/link';
 
 const LoginPage = () => {
-  // const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -20,16 +18,18 @@ const LoginPage = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // try{ 
-    //   const response = await axios.post('/login', { email, password });
-    //   if (response.data.success) {
+    try{ 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const response = await fetch('');
+      // if (response.data.success) {
        
-    //   } else {
-    //     setError(response.data.message);
-    //     triggerShake();
-    //   }
-    // } catch (error) {
-    //   console.error(error);
+      // } else {
+      //   setError(response.data.message);
+      //   triggerShake();
+      // }
+    } catch (error) {
+      console.error(error);
+    }
   }
      
 
