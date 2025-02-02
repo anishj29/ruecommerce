@@ -28,7 +28,7 @@ const LoginPage = () => {
     // Clear previous errors before attempting login
     setError('');
   
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     const data = await axios.post('https://localhost:3000/login', { email, password });
     if(data.status === 200) {
       router.push('/profile');
