@@ -9,8 +9,6 @@ import Link from "next/link";
 import { IoStar } from "react-icons/io5";
 import "./sell.css";
 
-// ------------------ Reusable Components ------------------
-
  function Card({ className, children }: { className?: string; children: React.ReactNode; }) {
   return <div className={`bg-background p-4 rounded-lg shadow ${className || ""}`}>{children}</div>;
 }
@@ -21,10 +19,8 @@ import "./sell.css";
 
 
 export default function SellerProfile() {
-  // ----- Notifications Dropdown State -----
   const [notifOpen, setNotifOpen] = useState(false);
 
-  // ----- Profile Image Upload State (with localStorage & fade-in) -----
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [isProfileImageLoaded, setIsProfileImageLoaded] = useState(true);
   const [isInitialized, setIsInitialized] = useState(false);

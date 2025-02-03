@@ -35,12 +35,7 @@ const Register = () => {
       triggerShake();
       return;
     }
-
-
-    // Clear previous errors before attempting to register.
     setError('');
-
-
 
     try {
       const response = await axios.post('https://localhost:5000/register', formData);

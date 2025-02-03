@@ -93,10 +93,6 @@ function CardContent({ children }: { children: React.ReactNode }) {
   return <div>{children}</div>;
 }
 
-/**
- * A custom dropdown component for filtering.
- * The open state is managed by the parent component.
- */
 function FilterDropdown({
   label,
   options,
@@ -149,12 +145,7 @@ export default function Home() {
   const [selectedCampus, setSelectedCampus] = useState("All");
   const [selectedPrice, setSelectedPrice] = useState("All");
   const [selectedRating, setSelectedRating] = useState("All");
-
-  // This state tracks which filter dropdown is currently open.
-  // Allowed values: "category", "campus", "price", "rating", or null.
   const [openFilter, setOpenFilter] = useState<string | null>(null);
-
-  // Options for each filter
   const categoryOptions = [
     "All",
     "Shoes",
@@ -168,7 +159,6 @@ export default function Home() {
   const priceOptions = ["All", "$ <100", "$100-150", "$ >150"];
   const ratingOptions = ["All", "4+", "4.5+", "5"];
 
-  // Combine all filters with the search query
   const filteredServices = dummyServices.filter((service) => {
     let pass = true;
     if (selectedCategory !== "All") {
